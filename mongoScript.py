@@ -24,15 +24,16 @@ client = MongoClient('localhost', 27017)
 #client = MongoClient('mongodb://localhost:27017/')
 
 # Drop previous database
-dbToDrop = 'test_database'
+dbToDrop = 'sim_db'
 client.drop_database(dbToDrop)
 
 # Access db using attribute style access on MongoClient instances
 # Make sure db name can be used in attribute style
-db = client.test_database
+db = client.sim_db
 
 # Create a collection
-collection = db.test_collection
+collection_parameters = {"capped" : True, "size" : 2147483648}
+collection = db.create_collection("iceStockL1", **collection_parameters)
 posts = [
     {"symbol": "AAPL",
     "price": "2",
@@ -43,7 +44,6 @@ posts = [
     "prev": "1",
     "change": "1",
     "changepct": "1",
-    "createdtime": datetime.datetime.utcnow(),
     "type": "1",
     "msg":"1"},
     {"symbol": "GME",
@@ -55,7 +55,6 @@ posts = [
     "prev": "2",
     "change": "2",
     "changepct": "2",
-    "createdtime": datetime.datetime.utcnow(),
     "type": "2",
     "msg":"2"},
     {"symbol": "BB",
@@ -67,7 +66,6 @@ posts = [
     "prev": "3",
     "change": "3",
     "changepct": "3",
-    "createdtime": datetime.datetime.utcnow(),
     "type": "3",
     "msg":"3"},
     ]
@@ -82,7 +80,6 @@ post = {"symbol": "AAPL",
     "prev": "1",
     "change": "1",
     "changepct": "1",
-    "createdtime": datetime.datetime.utcnow(),
     "type": "1",
     "msg":"1"}
 '''
@@ -131,7 +128,6 @@ while(True):
         "prev": prev,
         "change": change,
         "changepct": changepct,
-        "createdtime": datetime.datetime.utcnow(),
         "type": typeStr,
         "msg":msg
     }
