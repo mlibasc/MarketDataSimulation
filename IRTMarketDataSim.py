@@ -68,5 +68,5 @@ while(True):
     # Insert new post into collection
     collection.insert_one(post)
 
-    sleepDuration = randrange(5)
+    sleepDuration = randrange(3)
     time.sleep(sleepDuration)
