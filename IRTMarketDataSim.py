@@ -1,6 +1,6 @@
 # Created By: Mei Li
 # Date Created: 14-Mar-2021
-# Last Updated: 14-Mar-2021
+# Last Updated: 23-Mar-2021
 '''
 The purpose of this program is to simulate market data for an exisitng database and collection in MongoDB.
 
@@ -8,11 +8,8 @@ The purpose of this program is to simulate market data for an exisitng database 
 
 import pymongo
 import datetime
-# pprint library is used to make output look pretty
-from pprint import pprint
-
 import random
-import string 
+import string
 import time
 from random import randrange
 
@@ -43,30 +40,30 @@ while(True):
     price = str(randrange(100))
     bid = str(randrange(100))
     ask = str(randrange(100))
-    accvol = str(randrange(100))
+    #accvol = str(randrange(100))
     openStr = str(randrange(100))
-    prev = str(randrange(100))
+    #prev = str(randrange(100))
     change = str(randrange(100))
     changepct = str(randrange(100))
-    typeStr = str(randrange(100))
-    msg = str(randrange(100))
+    #typeStr = str(randrange(100))
+    #msg = str(randrange(100))
 
     post = {
         "symbol": symbol,
         "price": price,
         "bid": bid,
         "ask": ask,
-        "accvol": accvol,
+        #"accvol": accvol,
         "open": openStr,
-        "prev": prev,
+        #"prev": prev,
         "change": change,
         "changepct": changepct,
-        "type": typeStr,
-        "msg":msg
+        #"type": typeStr,
+        #"msg":msg
     }
     
     # Insert new post into collection
     collection.insert_one(post)
 
-    sleepDuration = randrange(3)
+    sleepDuration = randrange(2)
     time.sleep(sleepDuration)

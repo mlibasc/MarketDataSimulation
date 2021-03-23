@@ -1,9 +1,8 @@
 # Created By: Mei Li
 # Date Created: 9-Mar-2021
-# Last Updated: 9-Mar-2021
+# Last Updated: 23-Mar-2021
 '''
-The purpose of this program is to simulate market data for a MongoDB. 
-I specifically created this program for when I need to develop the ICE project but the market is closed. 
+The purpose of this program is to simulate market data for a MongoDB database. 
 
 '''
 
@@ -31,9 +30,9 @@ client.drop_database(dbToDrop)
 # Make sure db name can be used in attribute style
 db = client.sim_db
 
-# Create a collection
+# Create a capped collection
 collection_parameters = {"capped" : True, "size" : 2147483648}
-collection = db.create_collection("iceStockL1", **collection_parameters)
+collection = db.create_collection("stocks", **collection_parameters)
 posts = [
     {"symbol": "AAPL",
     "price": "2",
